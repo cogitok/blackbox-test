@@ -25,7 +25,7 @@ spec:
          - sourceLabels: [__param_target]
            targetLabel: instance
          - targetLabel: __address__
-           replacement: prometheus-blackbox-exporter.blackbox.svc.local:9115
+           replacement: blackbox-exporter.blackbox.svc.cluster.local:9115
   selector:
     matchLabels:
       app.kubernetes.io/name: blackbox-exporter
