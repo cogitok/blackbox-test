@@ -16,18 +16,19 @@ modules:
       preferred_ip_protocol: ip4
       tls_config:
         insecure_skip_verify: true
-serviceMonitor:
-  enabled: true
-  defaults:
-  additionalRelabeling: 
-  - source_labels: [__address__]
-    target_label: __param_target
-  - source_labels: [__param_target]
-    target_label: instance
-  - target_label: __address__
-    replacement: prometheus-blackbox-exporter.blackbox:9115
-  targets:
-  - name: google 
+        
+  serviceMonitor:
+    enabled: true
+    defaults:
+      additionalRelabeling: 
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: prometheus-blackbox-exporter.blackbox:9115
+    targets:
+    - name: google 
     url: https://www.google.com
 
 
