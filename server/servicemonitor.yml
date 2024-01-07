@@ -13,7 +13,19 @@ spec:
     - port: http
       scheme: http
       interval: 30s
-
+      params:
+        module:
+        - http_2xx
+        target:
+        - https://www.google.com/
+        - https://www.github.com/
+      metricRelabelings:
+         - source_labels: [__address__]
+           target_label: __param_target
+         - source_labels: [__param_target]
+           target_label: instance
+         - target_label: __address__
+           replacement: prometheus-blackbox-exporter.blackbox.svc.local:9115
   selector:
     matchLabels:
       app.kubernetes.io/name: blackbox-exporter
