@@ -14,8 +14,7 @@ spec:
       scheme: http
       interval: 30s
       params:
-        module:
-        - http_2xx
+        module: [http_2xx]
         target:
         - https://www.google.com/
         - https://www.github.com/
