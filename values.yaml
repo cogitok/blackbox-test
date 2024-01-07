@@ -259,12 +259,20 @@ serviceMonitor:
   ## If true, a ServiceMonitor CRD is created for a prometheus operator
   ## https://github.com/coreos/prometheus-operator for each target
   ##
-  enabled: false
+  enabled: true
 
   # Default values that will be used for all ServiceMonitors created by `targets`
   defaults:
     additionalMetricsRelabels: {}
-    additionalRelabeling: []
+    additionalRelabeling: 
+      - source_labels: [__address__]
+         target_label: __param_target
+      - source_labels: [__param_target]
+      # Important!     
+        target_label: target
+      # Ensure blackbox-exporter is reachable from Prometheus
+      - target_label: __address__ 
+        replacement: prometheus-blackbox-exporter.blackbox:9115
     labels: {}
     interval: 30s
     scrapeTimeout: 30s
@@ -279,6 +287,9 @@ serviceMonitor:
   bearerTokenFile:
 
   targets:
+    - name: github
+      url: https://www.github.com
+      
 #    - name: example                    # Human readable URL that will appear in Prometheus / AlertManager
 #      url: http://example.com/healthz  # The URL that blackbox will scrape
 #      hostname: example.com            # HTTP probes can accept an additional `hostname` parameter that will set `Host` header and TLS SNI
