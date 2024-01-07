@@ -20,15 +20,15 @@ serviceMonitor:
   enabled: true
   defaults:
   additionalRelabeling: 
-    - source_labels: [__address__]
-      target_label: __param_target
-    - source_labels: [__param_target]
-      target_label: instance
-    - target_label: __address__
-      replacement: prometheus-blackbox-exporter.blackbox:9115
+  - source_labels: [__address__]
+    target_label: __param_target
+  - source_labels: [__param_target]
+    target_label: instance
+  - target_label: __address__
+    replacement: prometheus-blackbox-exporter.blackbox:9115
   targets:
-    - name: google 
-      url: https://www.google.com
-      
+  - name: google 
+    url: https://www.google.com
+
 
 ...
