@@ -65,8 +65,8 @@ spec:
             enabled: true
             defaults:
               targets:
-                - name: google
-                  url: https://www.google.com/
+              - name: google
+                url: https://www.google.com/
           volumeMounts:
             - mountPath: /etc/blackbox_exporter
               name: config
