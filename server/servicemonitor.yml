@@ -16,9 +16,9 @@ spec:
       params:
         module: [http_2xx]
         target:
-        - https://www.google.com/
-        - https://www.github.com/
-      metricRelabelings:
+        - http://www.google.com/
+        - http://www.github.com/
+      relabelings:
          - sourceLabels: [__address__]
            targetLabel: __param_target
          - sourceLabels: [__param_target]
